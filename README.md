@@ -48,39 +48,59 @@ Array of whatever object where each object is of the same class and the start an
     DataObject = Struct.new(:start_point, :end_point)
 
     input_data = [ DataObject.new(1,10), DataObject.new(1,5), DataObject.new(3,6) ]
-    Overlaps.find(input_data, start: :start_point, end: :end_point)
+    analysis = Overlaps.find(input_data, start: :start_point, end: :end_point)
 
-Overlaps.find returns an array of Union objects, where each Union captures the following (with example output):
+Overlaps.find returns an Object Analysis, this contains all unions and informations about the global data analysis
 
   New Segment
 
-    union.segment => Overlap::Segment#... [1, 4]
-    union.segment => Overlap::Segment#... [5, 6]
+    analysis.unions.each do |union|
+      union.segment => Overlap::Segment#... [1, 4]
+      union.segment => Overlap::Segment#... [5, 6]
+    end
+    analysis.segments => [ Overlap::Segment#... [1, 4], Overlap::Segment#... [5, 6] ]
 
   All Segments overlapped
 
-    union.segments => [ Overlap::Segment#... [1, 4], Overlap::Segment#... [2, 3] ]
-    union.segments => [ Overlap::Segment#... [5, 6] ]
+    analysis.unions.each do |union|
+      union.segments => [ Overlap::Segment#... [1, 4], Overlap::Segment#... [2, 3] ]
+      union.segments => [ Overlap::Segment#... [5, 6] ]
+    end
 
   Intersections
 
-    union.intersections => [1]
-    union.intersections => []
+    analysis.unions.each do |union|
+      union.intersections => [1]
+      union.intersections => []
+    end
+    analysis.intersections => [ 1, 0 ]
 
   Quantity/Distance
 
-    union.quantity => 3
-    union.quantity => 1
+    analysis.unions.each do |union|
+      union.quantity => 3
+      union.quantity => 1
+    end
+    analysis.quantities => [ 3, 1 ]
+    analysis.quantity => 4
 
   Quantity/Distance With Intersections
 
-    union.quantity_with_intersections => 4
-    union.quantity_with_intersections => 1
+    analysis.unions.each do |union|
+      union.quantity_with_intersections => 4
+      union.quantity_with_intersections => 1
+    end
+    analysis.quantities_with_intersections => [ 4, 1 ]
+    analysis.quantity_with_intersections => 5
 
   Intersections Quantity/Distance
 
-    union.intersection_quantity => 1
-    union.intersection_quantity => 0
+    analysis.unions.each do |union|
+      union.intersection_quantity => 1
+      union.intersection_quantity => 0
+    end
+    analysis.intersections => [ 1, 0 ]
+    analysis.intersection_quantity => 1
 
 ## Development
 
@@ -90,7 +110,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/overlap. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/FinalCAD/overlap. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
