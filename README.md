@@ -1,5 +1,15 @@
 # Overlap
 
+[![Code Climate](https://codeclimate.com/github/FinalCAD/overlap.png)](https://codeclimate.com/github/FinalCAD/overlap)
+
+[![Dependency Status](https://gemnasium.com/FinalCAD/overlap.svg)](https://gemnasium.com/FinalCAD/overlap)
+
+[![Build Status](https://travis-ci.org/FinalCAD/overlap.svg?branch=master)](https://travis-ci.org/FinalCAD/overlap) (Travis CI)
+
+[![Coverage Status](https://coveralls.io/repos/FinalCAD/overlap/badge.svg?branch=master&service=github)](https://coveralls.io/github/FinalCAD/overlap?branch=master)
+
+[![Gem Version](https://badge.fury.io/rb/overlap.svg)](http://badge.fury.io/rb/overlap)
+
 The Overlap module provides methods to remove overlapping for linear segments, also provide some informations about them:
 
 You can give a collection of object with a start position and end position and Overlap give you Unions, Overlap spot overlapped segments and merge them to one continuous segment, and provide to you some informations like intersection quantities, new quantity/distance of your segment

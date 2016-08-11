@@ -6,4 +6,5 @@ gemspec
 group :test do
   gem 'byebug'
   gem 'pry-byebug'
+  gem 'coveralls', require: false
 end
