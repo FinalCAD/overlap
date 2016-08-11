@@ -27,8 +27,7 @@ module Overlap
         intersection
       end.compact
 
-      @intersection_quantity = intersections.reduce(:+).round(2)
-
+      @intersection_quantity = intersections.reduce(:+)&.round(2) || 0
       @quantity_with_intersections = quantity + intersection_quantity
     end
 
