@@ -8,7 +8,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/FinalCAD/overlap/badge.svg?branch=master&service=github)](https://coveralls.io/github/FinalCAD/overlap?branch=master)
 
-[![Gem Version](https://badge.fury.io/rb/overlap.svg)](http://badge.fury.io/rb/overlap)
+[![Gem Version](https://badge.fury.io/rb/overlap.svg)](https://badge.fury.io/rb/overlap)
 
 The Overlap module provides methods to remove overlapping for linear segments, also provide some informations about them:
 
