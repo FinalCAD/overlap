@@ -5,20 +5,31 @@ module Overlap
     let(:collection) do
       Collection.new(
         [
-          [1.0, 2.0],
-          [1.5, 2.5],
-          [2.0, 2.5],
-
-          [5.0, 6.0],
+          [20.080, 19.727],
+          [19.757, 19.435],
+          [19.435, 19.113],
+          [19.113, 18.791],
+          [18.791, 18.469],
+          [18.569, 18.947],
         ]
       ).collection
     end
+
     subject { described_class.new(collection) }
+
     it do
-      expect(subject.overlaps).to eql({
-        Segment.new(1.0, 2.0) => [ Segment.new(1.5, 2.5), Segment.new(2.0, 2.5) ],
-        Segment.new(5.0, 6.0) => [ ] 
-      })
+      expect(subject.overlaps).to eql([
+        { union: Segment.new(18.469, 20.08),
+          segments: [
+            Segment.new(18.469, 18.791),
+            Segment.new(18.569, 18.947),
+            Segment.new(18.791, 19.113),
+            Segment.new(19.113, 19.435),
+            Segment.new(19.435, 19.757),
+            Segment.new(19.727, 20.080),
+          ]
+        }
+      ])
     end
   end
 end

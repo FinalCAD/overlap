@@ -1,3 +1,3 @@
-### VERSION 0.1.0 => x.x.x
+### VERSION 0.1.0 => 0.2.0
 
-  Nothing for now
+  Really important change, last version was wrong for complicated case

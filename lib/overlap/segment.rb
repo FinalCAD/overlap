@@ -9,6 +9,18 @@ module Overlap
       build!
     end
 
+    def merge!(other)
+      if other.start_position < start_position
+        @start_position = other.start_position
+      end
+
+      if end_position < other.end_position
+        @end_position = other.end_position
+      end
+
+      build!
+    end
+
     def to_s
       "[#{start_position.to_f}, #{end_position.to_f}]"
     end
@@ -27,7 +39,7 @@ module Overlap
     end
 
     def overlap?(other)
-      (center - other.center).abs.round(2) <= (radius + other.radius).round(2)
+      (center - other.center).abs.round(3) <= (radius + other.radius).round(3)
     end
 
     def ==(other)

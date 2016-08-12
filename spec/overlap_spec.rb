@@ -49,6 +49,27 @@ describe Overlap do
   end
   context 'without data' do
     let(:data) { [] }
-    it { expect(described_class.find(data).quantity).to eql(nil) }
+    it { expect(described_class.find(data).quantity).to eql(0) }
+  end
+  context 'third set of data', focus: true do
+    let(:data) do
+      [
+        [20.080, 19.727],
+        [19.757, 19.435],
+        [19.435, 19.113],
+        [19.113, 18.791],
+        [18.791, 18.469],
+        [18.569, 18.947],
+      ]
+    end
+    it do
+      expect(subject.segments).to eql([[18.469, 20.08]])
+      expect(subject.intersections).to eql([0.408])
+      expect(subject.intersection_quantity).to eql(0.408)
+      expect(subject.quantity_with_intersections).to eql(2.019)
+      expect(subject.quantities_with_intersections).to eql([2.019])
+      expect(subject.quantity).to eql(1.611)
+      expect(subject.quantities).to eql([1.611])
+    end
   end
 end

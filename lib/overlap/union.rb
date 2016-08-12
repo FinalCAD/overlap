@@ -3,18 +3,16 @@ module Overlap
 
     attr_reader :segment, :quantity, :intersections, :quantity_with_intersections, :intersection_quantity, :segments
 
-    def initialize(data_overlaps)
-      @segments = data_overlaps.flatten.flatten.sort
+    def initialize(overlapped_segments)
+      @overlapped_segments = overlapped_segments
+      @segments = overlapped_segments[:segments].sort
       build!
     end
 
     private
 
     def build!
-      start_position = flatten_values.min
-      end_position   = flatten_values.max
-
-      @segment = Segment.new(start_position, end_position)
+      @segment = @overlapped_segments[:union]
       @quantity = segment.quantity
 
       previous_value = nil
@@ -27,12 +25,8 @@ module Overlap
         intersection
       end.compact
 
-      @intersection_quantity = intersections.reduce(:+)&.round(2) || 0
-      @quantity_with_intersections = quantity + intersection_quantity
-    end
-
-    def flatten_values
-      @flatten_values ||= segments.map(&:to_a).flatten
+      @intersection_quantity = intersections.reduce(:+)&.round(3) || 0
+      @quantity_with_intersections = segments.map(&:quantity).reduce(:+)&.round(3) || 0
     end
   end
 end
