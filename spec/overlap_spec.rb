@@ -47,4 +47,8 @@ describe Overlap do
       expect(subject.quantities).to eql([4.5, 1.5])
     end
   end
+  context 'without data' do
+    let(:data) { [] }
+    it { expect(described_class.find(data).quantity).to eql(nil) }
+  end
 end
